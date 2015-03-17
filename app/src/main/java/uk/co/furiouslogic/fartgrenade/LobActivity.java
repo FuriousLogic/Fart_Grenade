@@ -1,12 +1,19 @@
 package uk.co.furiouslogic.fartgrenade;
 
+import android.content.Context;
+import android.media.AudioAttributes;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+
+import java.io.InputStream;
 
 //todo: Quick fart delay selector
 //todo: Randomly choose from raw resources
@@ -33,8 +40,36 @@ public class LobActivity extends ActionBarActivity {
     private void showState(Integer currentCountDownSecond) {
         if (currentCountDownSecond > 0)
             _txtCountDown.setText(String.valueOf(currentCountDownSecond));
-        else
+        else {
             _txtCountDown.setText("FART!");
+            makeRandomFart();
+        }
+    }
+
+    private void makeRandomFart() {
+        Context context = getApplicationContext();
+
+        SoundPool beepPool;
+        int beepLowId;
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            AudioAttributes aa = new AudioAttributes.Builder()
+                    .setContentType(AudioAttributes.CONTENT_TYPE_UNKNOWN)
+                    .setUsage(AudioAttributes.USAGE_ALARM)
+                    .build();
+
+            beepPool = new SoundPool.Builder()
+                    .setMaxStreams(10)
+                    .setAudioAttributes(aa)
+                    .build();
+            beepLowId = beepPool.load(context, R.raw.test_fart_01, 1);
+//            beepHighId = beepPool.load(context, R.raw.beephigh, 1);
+        }else{
+            beepPool = new SoundPool(10, AudioManager.STREAM_ALARM, 1);
+            beepLowId = beepPool.load(context, R.raw.test_fart_01, 1);
+//            beepHighId = beepPool.load(context, R.raw.beephigh, 1);
+        }
+
+        beepPool.play(beepLowId, 1, 1, 1, 0, 1);
     }
 
 
