@@ -9,7 +9,26 @@
         android:id="@+id/txtCountDown"
         android:text=""
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textSize="100sp"
+        />
+    <Button
+        android:id="@+id/btnUp"
+        android:text="up"
+        android:layout_below="@+id/txtCountDown"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="btnUp_onClick"
+        />
+    <Button
+        android:id="@+id/btnDown"
+        android:text="down"
+        android:layout_below="@+id/btnUp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="btnDown_onClick"
+        />
     <Button
         android:id="@+id/btnArm"
         android:text="ARM!"

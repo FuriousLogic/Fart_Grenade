@@ -6,22 +6,19 @@ import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.AsyncTask;
 import android.os.Build;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
 import java.io.InputStream;
-
-//todo: Quick fart delay selector
-//todo: Randomly choose from raw resources
+import java.util.Random;
 
 public class LobActivity extends ActionBarActivity {
 
-    private boolean _isRunning = false;
-    private int _fartDelay = 10;
+    private int _fartDelay = 5;
 
     //Controls
     private TextView _txtCountDown;
@@ -41,7 +38,7 @@ public class LobActivity extends ActionBarActivity {
         if (currentCountDownSecond > 0)
             _txtCountDown.setText(String.valueOf(currentCountDownSecond));
         else {
-            _txtCountDown.setText("FART!");
+            _txtCountDown.setText("OOPS!");
             makeRandomFart();
         }
     }
@@ -50,7 +47,6 @@ public class LobActivity extends ActionBarActivity {
         Context context = getApplicationContext();
 
         SoundPool beepPool;
-        int beepLowId;
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             AudioAttributes aa = new AudioAttributes.Builder()
                     .setContentType(AudioAttributes.CONTENT_TYPE_UNKNOWN)
@@ -61,15 +57,20 @@ public class LobActivity extends ActionBarActivity {
                     .setMaxStreams(10)
                     .setAudioAttributes(aa)
                     .build();
-            beepLowId = beepPool.load(context, R.raw.test_fart_01, 1);
-//            beepHighId = beepPool.load(context, R.raw.beephigh, 1);
-        }else{
+        }else
             beepPool = new SoundPool(10, AudioManager.STREAM_ALARM, 1);
-            beepLowId = beepPool.load(context, R.raw.test_fart_01, 1);
-//            beepHighId = beepPool.load(context, R.raw.beephigh, 1);
-        }
 
-        beepPool.play(beepLowId, 1, 1, 1, 0, 1);
+        //Get random number to choose fart sound
+        Random rand = new Random();
+        int max = 7;
+        int min = 1;
+        int randomNum = rand.nextInt((max - min) + 1) + min;
+
+        String resourceName = "test_fart_0" + randomNum;
+        int resId = getResources().getIdentifier(resourceName , "raw", getPackageName());
+        int noiseId = beepPool.load(context, resId, 1);
+
+        beepPool.play(noiseId, 1, 1, 1, 0, 1);
     }
 
 
@@ -99,6 +100,18 @@ public class LobActivity extends ActionBarActivity {
 //        TextView txtCountDown = (TextView) findViewById(R.id.txtCountDown);
 //        txtCountDown.setText("Arse Biscuits!");
         new CountDown().execute(_fartDelay);
+    }
+
+    public void btnUp_onClick(View view) {
+        if(_fartDelay>=300) return;
+        _fartDelay+=5;
+        showState(_fartDelay);
+    }
+
+    public void btnDown_onClick(View view) {
+        if(_fartDelay<=5) return;
+        _fartDelay-=5;
+        showState(_fartDelay);
     }
 
     private class CountDown extends AsyncTask<Integer, Integer, Boolean> {
