@@ -20,6 +20,14 @@ public class LobActivity extends ActionBarActivity {
 
     private int _fartDelay = 5;
 
+    //todo: proper fart sounds
+    //todo: admob
+    //todo: pollfish
+    //todo: My logo
+    //todo: volume up
+    //todo: darken screen
+    //todo: record result
+
     //Controls
     private TextView _txtCountDown;
 
