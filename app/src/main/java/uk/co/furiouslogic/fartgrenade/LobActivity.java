@@ -70,11 +70,11 @@ public class LobActivity extends ActionBarActivity {
 
         //Get random number to choose fart sound
         Random rand = new Random();
-        int max = 7;
+        int max = 3;
         int min = 1;
         int randomNum = rand.nextInt((max - min) + 1) + min;
 
-        String resourceName = "test_fart_0" + randomNum;
+        String resourceName = "fart0" + randomNum;
         int resId = getResources().getIdentifier(resourceName , "raw", getPackageName());
         int noiseId = beepPool.load(context, resId, 1);
 

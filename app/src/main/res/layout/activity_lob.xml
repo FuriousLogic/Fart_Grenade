@@ -17,7 +17,8 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:textSize="100sp"
-        android:textColor="@color/primary_dark_material_light" />
+        android:textColor="@color/primary_dark_material_light"
+        />
     <Button
         android:id="@+id/btnUp"
         android:text="up"
@@ -54,6 +55,7 @@
         android:layout_below="@+id/btnDown"
         android:layout_marginTop="20dp"
         android:src="@drawable/logo_lob_activity"
-        android:layout_above="@+id/btnArm" />
+        android:layout_above="@+id/btnArm"
+        />
 
 </RelativeLayout>
