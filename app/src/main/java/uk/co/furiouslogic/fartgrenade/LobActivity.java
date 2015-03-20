@@ -23,7 +23,6 @@ public class LobActivity extends ActionBarActivity {
     //todo: proper fart sounds
     //todo: admob
     //todo: pollfish
-    //todo: My logo
     //todo: volume up
     //todo: darken screen
     //todo: record result
