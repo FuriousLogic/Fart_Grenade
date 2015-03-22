@@ -1,6 +1,6 @@
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -37,15 +37,6 @@
         android:onClick="btnDown_onClick"
         android:textColor="@color/background_material_light"
         />
-    <Button
-        android:id="@+id/btnArm"
-        android:text="ARM!"
-        android:onClick="btnArm_onClick"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:textColor="@color/background_material_light"
-        />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -56,6 +47,27 @@
         android:layout_marginTop="20dp"
         android:src="@drawable/logo_lob_activity"
         android:layout_above="@+id/btnArm"
+        />
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/avMainBanner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-1743099204773472/8144642948"
+        >
+    </com.google.android.gms.ads.AdView>
+
+    <Button
+        android:id="@+id/btnArm"
+        android:text="ARM!"
+        android:onClick="btnArm_onClick"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/avMainBanner"
+        android:textColor="@color/background_material_light"
         />
 
 </RelativeLayout>

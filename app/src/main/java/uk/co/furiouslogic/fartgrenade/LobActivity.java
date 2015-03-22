@@ -13,6 +13,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import java.io.InputStream;
 import java.util.Random;
 
@@ -34,6 +37,12 @@ public class LobActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lob);
+
+        //Admob
+        AdView avTimerBanner = (AdView) findViewById(R.id.avMainBanner);
+        avTimerBanner.loadAd(new AdRequest.Builder()
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .addTestDevice("A9C350CBED46BAC089E21096D5522BE6").build());
 
         //Get controls
         _txtCountDown = (TextView) findViewById(R.id.txtCountDown);
