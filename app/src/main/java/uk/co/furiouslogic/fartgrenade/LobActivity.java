@@ -16,6 +16,10 @@ import android.widget.TextView;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
+import com.pollfish.main.PollFish;
+import com.pollfish.constants.Position;
+
+
 import java.io.InputStream;
 import java.util.Random;
 
@@ -48,6 +52,13 @@ public class LobActivity extends ActionBarActivity {
         _txtCountDown = (TextView) findViewById(R.id.txtCountDown);
 
         showState(_fartDelay);
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+
+        PollFish.init(this, "7758ef7c-4cfb-4c16-97b3-17b91033fdfd", Position.TOP_LEFT, 50);
     }
 
     private void showState(Integer currentCountDownSecond) {
